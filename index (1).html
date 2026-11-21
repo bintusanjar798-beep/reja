@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kunlik reja · ATTANAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf3ee;--card:#fffaf6;--ink:#4a2530;--soft:#8a6670;--rose:#c98b9b;--rose2:#f0d9de;--gold:#b8924a;--line:#ead6d0;--ok:#7a9a6d;--no:#b5535f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1418;--card:#2a1c22;--ink:#f3e3e0;--soft:#bfa0a8;--rose:#d79aab;--rose2:#3c2730;--gold:#d4ad65;--line:#44303a;--ok:#9dbd8f;--no:#e07a86;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1f1418;--card:#2a1c22;--ink:#f3e3e0;--soft:#bfa0a8;--rose:#d79aab;--rose2:#3c2730;--gold:#d4ad65;--line:#44303a;--ok:#9dbd8f;--no:#e07a86;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:18px;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+.wrap{max-width:640px;margin:0 auto;padding:18px 14px 60px}
+.ar{font-family:Amiri,"Traditional Arabic",serif}
+h1{font-size:30px;margin:0;font-weight:700;letter-spacing:.3px}
+.sub{color:var(--soft);font-size:16px}
+.hero{text-align:center;padding:22px 14px;background:linear-gradient(160deg,var(--rose2),var(--card));border:1px solid var(--line);border-radius:22px;position:relative}
+.hero:before{content:"";position:absolute;inset:6px;border:1px solid var(--gold);border-radius:17px;opacity:.5;pointer-events:none}
+.slogan{font-size:22px;color:var(--gold);margin:10px 0 2px;direction:rtl}
+.ring{width:96px;height:96px;margin:12px auto 4px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--line) 0)}
+.ring b{width:76px;height:76px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:24px}
+.bar{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.pill{border:1px solid var(--gold);background:transparent;color:var(--ink);border-radius:20px;padding:6px 14px;font-size:16px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:12px 0;overflow:hidden}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--rose2);font-weight:700}
+.sh small{color:var(--gold);font-size:16px}
+.it{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--line)}
+.st{flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--rose);background:transparent;font-size:17px;line-height:1;color:var(--soft)}
+.st.y{background:var(--ok);border-color:var(--ok);color:#fff}
+.st.n{background:var(--no);border-color:var(--no);color:#fff}
+.it span.t{flex:1;padding-top:4px;line-height:1.25}
+.it.y .t{color:var(--soft);text-decoration:line-through;text-decoration-color:var(--rose)}
+.x{border:0;background:none;color:var(--soft);font-size:20px}
+textarea,input[type=text],input[type=password]{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+textarea{min-height:90px}
+.row{display:flex;gap:8px;margin:10px 14px}
+.row input{flex:1}
+.box{padding:12px 14px}
+.toast{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:616px;margin:0 auto;background:var(--ink);color:var(--bg);padding:14px 16px;border-radius:16px;display:none;z-index:20;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#lock{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;z-index:50;padding:20px}
+.lc{max-width:340px;width:100%;text-align:center;background:var(--card);border:1px solid var(--gold);border-radius:24px;padding:28px 20px}
+.lc input{margin:10px 0;text-align:center}
+.msg{color:var(--no);min-height:22px;font-size:16px}
+.hist{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px}
+.hist div{background:var(--rose2);border-radius:12px;padding:6px 10px;font-size:15px}
+</style>
+</head>
+<body>
+<div id="lock"><div class="lc">
+<div class="ar" style="font-size:34px;color:var(--gold)">بسم الله</div>
+<h1 id="lt">Kirish</h1><div class="sub" id="ls"></div>
+<input type="password" id="p1" placeholder="Parol" autocomplete="off">
+<input type="password" id="p2" placeholder="Parolni takrorlang" style="display:none" autocomplete="off">
+<div class="msg" id="lm"></div>
+<button class="pill" id="lb" style="background:var(--gold);color:#fff;width:100%;padding:10px">Davom etish</button>
+</div></div>
+
+<div class="wrap" id="app" style="display:none">
+<div class="hero">
+<div class="sub" id="dt"></div>
+<h1>ATTANAL · Kunlik reja</h1>
+<div class="sub">Maqsad: C2 darajasi</div>
+<div class="sub" id="cd" style="color:var(--gold);font-weight:700;font-size:21px"></div>
+<div class="ring" id="ring" style="--p:0"><b id="pc">0%</b></div>
+<div class="sub" id="cnt"></div>
+<div class="slogan ar">لا أريد أن أدرس العربية فحسب، بل أريد أن أُتقنها.</div>
+<div class="sub">Men shunchaki oʻrganishni emas, mukammal egallashni istayman.</div>
+</div>
+<div class="bar">
+<button class="pill" id="nb">🔔 Eslatmalarni yoqish</button>
+<button class="pill" id="lk">🔒 Qulflash</button>
+</div>
+<div id="secs"></div>
+<div class="sec"><div class="sh">Xatolar daftari <small>takroriy xatolar</small></div><div class="box"><textarea id="notes" placeholder="Takroriy xatolarni shu yerga yozing…"></textarea></div></div>
+<div class="sec"><div class="sh">Bugungi yangi lugʻatlar <small>1 · 3 · 7 kun takror</small></div><div class="box"><textarea id="words" placeholder="Yangi soʻz va iboralar (har birini gapda ishlating)…"></textarea></div></div>
+<div class="sec"><div class="sh">Haftalik tahlil <small>qaysi mahoratga eʼtibor?</small></div><div class="box" id="wk"></div></div>
+<div class="sec"><div class="sh">Mock natijalari <small>grafik</small></div><div class="row"><select id="mt" style="font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px"><option>Reading</option><option>Listening</option><option>Grammar</option><option>Writing</option><option>Speaking</option></select><input type="text" id="ms" inputmode="numeric" placeholder="Ball %" style="max-width:90px"><button class="pill" id="ma">＋</button></div><div class="box" id="mc"></div></div>
+<div class="sec"><div class="sh">Bugungi takror <small>1 · 3 · 7 kun</small></div><div class="box" id="rv"></div></div>
+<div class="sec"><div class="sh">Kunlar (40 kun)</div><div class="hist" id="hist"></div></div>
+<div class="bar"><button class="pill" id="bk">💾 Zaxira nusxa</button><button class="pill" id="rs">📂 Qaytarish</button><input type="file" id="rf" accept=".json" style="display:none"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var S=[
+["1. READING","القراءة",["Pro Arabicʼdan 2 ta dars mutolaa qilish","Yangi lugʻatlarni yozish va yodlash","Lugʻatlarni gaplarda qoʻllash","1 ta Reading mock ishlash va tahlil qilish","Murakkab jumlalarni grammatik-leksik tahlil qilish","Matn mazmunini arab tilida bayon qilish"]],
+["2. LISTENING","الاستماع",["Rivayatʼdan 1 ta multfilm tomosha qilish","Yangi soʻz va iboralarni oʻrganish","1 ta Listening mock ishlash va tahlil qilish","Tushunilmagan jumlalarni aniqlash","Eshitilgan materialni 2–3 daqiqa arab tilida xulosa qilish"]],
+["3. GRAMMAR","القواعد",["Tanalul Arobiyy kitobidan 1 ta mavzu oʻrganish","Qoidalarni misollar bilan mustahkamlash","1 ta Grammar mock ishlash va tahlil qilish","Mavzu asosida 10 ta gap tuzish","Oʻrganilgan qoidani arab tilida tushuntirish"]],
+["4. WRITING","الكتابة",["Namunaviy inshoni tahlil qilish","C1–C2 iboralari va grammatik konstruksiyalarni oʻrganish","Mustaqil 1 ta insho yozish","Inshoni tekshirtirish","Xatolarni tahlil qilish va qayta yozish"]],
+["5. SPEAKING","التحدث",["1 ta mavzu tanlash","Mavzuga oid lugʻat va iboralarni oʻrganish","Sinonim va antonimlarni oʻzlashtirish","5–7 daqiqa mustaqil nutq qilish","Mavzu yuzasidan suhbatlashish","Xatolarni aniqlash va toʻgʻrilash","Qoʻshimcha savollarga tayyorgarliksiz javob berish"]],
+["6. SHAXSIY RIVOJLANISH","التطوير الذاتي",["Pro Arabicʼdan 1 ta video dars koʻrish","Foydali maslahatlarni yozib olish va amalda qoʻllash","How to Writing kitobidan 1 bet bajarish","Manhaj C1 kitobidan 1 bet bajarish"]],
+["7. KUN YAKUNI","المراجعة اليومية",["10–15 daqiqa kunlik takrorlash","Yangi lugʻat va grammatikalarni takrorlash","Kun davomida yoʻl qoʻyilgan xatolarni tahlil qilish","Qiyinchiliklarni aniqlash","Ertangi takrorlash mavzularini belgilash"]],
+["8. QOʻSHIMCHA TALABLAR","",["Har bir yangi lugʻatni gapda ishlatish","Takroriy xatolarni alohida daftarga yozish","Bilimlarni 1, 3 va 7 kundan keyin takrorlash","Yangi bilimlarni Speaking va Writingʼda qoʻllash","Sifatni miqdordan ustun qoʻyish"]]
+];
+var SEED="2-1 2-2 2-3 2-4 2-5 3-1 3-2 3-3 3-5 5-1 5-2 5-5 5-7 6-4 7-2 7-4 7-5 8-1 8-3 8-4".split(" ");
+var K="ufq_plan_v1",D=null,unlocked=false,lastRem=Date.now();
+function $(i){return document.getElementById(i)}
+function ld(){try{return JSON.parse(localStorage.getItem(K)||"null")}catch(e){return null}}
+function sv(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}}
+function key(){return new Date().toLocaleDateString("en-CA")}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+async function hash(p){try{var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("ufq|"+p));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}catch(e){return "p"+btoa(unescape(encodeURIComponent(p)))}}
+function init(){
+ D=ld()||{pw:null,days:{}};
+ var first=!D.pw;
+ $("lt").textContent=first?"Parol oʻrnating":"Kirish";
+ $("ls").textContent=first?"Sahifaga faqat siz kirishingiz uchun":"Parolni kiriting";
+ $("p2").style.display=first?"block":"none";
+ try{if(sessionStorage.getItem("ufq_ok")==="1"&&D.pw){open_();return}}catch(e){}
+}
+$("lb").onclick=async function(){
+ var a=$("p1").value,m=$("lm");m.textContent="";
+ if(!D.pw){
+  if(a.length<4){m.textContent="Kamida 4 ta belgi";return}
+  if(a!==$("p2").value){m.textContent="Parollar mos kelmadi";return}
+  D.pw=await hash(a);sv();open_();
+ }else{
+  if(await hash(a)===D.pw)open_();else m.textContent="Parol notoʻgʻri";
+ }
+};
+$("p1").onkeydown=function(e){if(e.key==="Enter")$("lb").click()};
+function open_(){
+ unlocked=true;try{sessionStorage.setItem("ufq_ok","1")}catch(e){}
+ $("lock").style.display="none";$("app").style.display="block";$("p1").value="";$("p2").value="";
+ var k=key();
+ if(!D.days[k]){var d={done:{},custom:[],notes:"",words:""};if(!Object.keys(D.days).length)SEED.forEach(function(s){d.done[s]="y"});D.days[k]=d;sv()}
+ lastRem=Date.now();render();
+}
+$("lk").onclick=function(){try{sessionStorage.removeItem("ufq_ok")}catch(e){}unlocked=false;$("app").style.display="none";$("lock").style.display="grid";$("lt").textContent="Kirish";$("ls").textContent="Parolni kiriting";$("p2").style.display="none"};
+function day(){return D.days[key()]}
+function all(){var d=day(),l=[];S.forEach(function(s,si){s[2].forEach(function(t,i){l.push({id:(si+1)+"-"+(i+1),t:t,s:si})})});d.custom.forEach(function(c){l.push({id:c.id,t:c.t,s:99,c:1})});return l}
+function render(){
+ var d=day(),h="",tot=0,ok=0;
+ var now=new Date();$("dt").textContent=now.toLocaleDateString("uz-UZ",{weekday:"long",day:"numeric",month:"long"});
+ S.forEach(function(s,si){
+  var n=s[2].length,y=0,rows="";
+  s[2].forEach(function(t,i){var id=(si+1)+"-"+(i+1),v=d.done[id]||"";if(v==="y")y++;rows+=item(id,t,v,0)});
+  tot+=n;ok+=y;
+  h+='<div class="sec"><div class="sh"><span>'+esc(s[0])+' <span class="ar" style="color:var(--gold)">'+s[1]+'</span></span><small>'+y+'/'+n+'</small></div>'+rows+'</div>';
+ });
+ var cr="",cy=0;d.custom.forEach(function(c){var v=d.done[c.id]||"";if(v==="y")cy++;cr+=item(c.id,c.t,v,1)});
+ tot+=d.custom.length;ok+=cy;
+ h+='<div class="sec"><div class="sh"><span>9. MENING VAZIFALARIM</span><small>'+cy+'/'+d.custom.length+'</small></div>'+cr+'<div class="row"><input type="text" id="ni" placeholder="Yangi vazifa qoʻshish…"><button class="pill" id="na">＋</button></div></div>';
+ $("secs").innerHTML=h;
+ var p=tot?Math.round(ok/tot*100):0;
+ $("ring").style.setProperty("--p",p);$("pc").textContent=p+"%";$("cnt").textContent=ok+" / "+tot+" bajarildi";
+ $("notes").value=d.notes||"";$("words").value=d.words||"";
+ var hs="",ks=Object.keys(D.days).sort().reverse().slice(0,40);
+ ks.forEach(function(k){var dd=D.days[k],t=0,y=0;S.forEach(function(s,si){s[2].forEach(function(x,i){t++;if(dd.done[(si+1)+"-"+(i+1)]==="y")y++})});hs+='<div>'+k.slice(5)+' · '+Math.round(y/t*100)+'%</div>'});
+ $("hist").innerHTML=hs;
+ extras();
+ document.title=(tot-ok>0?"("+(tot-ok)+") ":"")+"Kunlik reja";
+}
+function item(id,t,v,c){
+ return '<div class="it '+v+'"><button class="st '+v+'" data-id="'+id+'">'+(v==="y"?"✅":v==="n"?"❌":"")+'</button><span class="t">'+esc(t)+'</span>'+(c?'<button class="x" data-del="'+id+'">×</button>':'')+'</div>';
+}
+document.addEventListener("click",function(e){
+ var t=e.target,d=unlocked&&day();if(!d)return;
+ if(t.dataset.id){var v=d.done[t.dataset.id]||"",nx=v===""?"y":v==="y"?"n":"";if(nx)d.done[t.dataset.id]=nx;else delete d.done[t.dataset.id];sv();render()}
+ else if(t.dataset.del){d.custom=d.custom.filter(function(c){return c.id!==t.dataset.del});delete d.done[t.dataset.del];sv();render()}
+ else if(t.id==="na"){var i=$("ni"),x=i.value.trim();if(x){d.custom.push({id:"c"+Date.now(),t:x});sv();render()}}
+});
+document.addEventListener("input",function(e){var d=unlocked&&day();if(!d)return;if(e.target.id==="notes"){d.notes=e.target.value;sv()}if(e.target.id==="words"){d.words=e.target.value;sv()}});
+$("nb").onclick=function(){
+ if(!("Notification" in window)){toast("Bu brauzerda bildirishnoma yoʻq — sahifa ichidagi eslatma ishlaydi.");return}
+ Notification.requestPermission().then(function(r){toast(r==="granted"?"Bildirishnomalar yoqildi 🔔":"Ruxsat berilmadi — sahifa ichidagi eslatma ishlaydi.")});
+};
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},9000)}
+setInterval(function(){
+ if(!unlocked)return;
+ if(!D.days[key()]){D.days[key()]={done:{},custom:[],notes:"",words:""};sv();render()}
+ if(Date.now()-lastRem>=3600000){
+  lastRem=Date.now();
+  var d=day(),left=all().filter(function(x){return d.done[x.id]!=="y"});
+  if(left.length){
+   var m="⏰ "+left.length+" ta vazifa qoldi: "+left.slice(0,2).map(function(x){return x.t}).join("; ")+(left.length>2?"…":"");
+   toast(m);
+   try{if(window.Notification&&Notification.permission==="granted")new Notification("Kunlik reja",{body:m})}catch(e){}
+  }
+ }
+},30000);
+function wk(){
+ var names=["Reading","Listening","Grammar","Writing","Speaking","Shaxsiy rivojlanish","Kun yakuni"],ks=Object.keys(D.days).sort().slice(-7),res=[];
+ for(var si=0;si<7;si++){
+  var t=0,y=0,x=0;
+  ks.forEach(function(k){var dd=D.days[k];S[si][2].forEach(function(_,i){t++;var v=dd.done[(si+1)+"-"+(i+1)];if(v==="y")y++;if(v==="n")x++})});
+  var ms=(D.mocks||[]).filter(function(m){return m.t===names[si]&&ks.indexOf(m.d)>-1});
+  var avg=ms.length?Math.round(ms.reduce(function(a,m){return a+m.s},0)/ms.length):null;
+  var p=t?Math.round(y/t*100):0;
+  res.push({n:names[si],p:p,x:x,m:avg,s:avg!==null?(p+avg)/2:p});
+ }
+ var weak=res.slice().sort(function(a,b){return a.s-b.s}).slice(0,2).map(function(r){return r.n});
+ var h='<div class="sub" style="margin-bottom:8px">Oxirgi '+ks.length+' kun · bajarilgan vazifalar va mock ballari</div>';
+ res.forEach(function(r){var w=weak.indexOf(r.n)>-1;h+='<div style="margin:8px 0"><div style="display:flex;justify-content:space-between"><span>'+r.n+(w?' ⚠️':'')+'</span><b>'+r.p+'%'+(r.m!==null?' · mock '+r.m+'%':'')+(r.x?' · ❌'+r.x:'')+'</b></div><div style="height:8px;background:var(--line);border-radius:6px;overflow:hidden"><div style="height:100%;width:'+r.p+'%;background:'+(w?'var(--no)':'var(--gold)')+'"></div></div></div>'});
+ h+='<div style="margin-top:10px"><b>Eʼtibor bering:</b> '+weak.join(", ")+'. Ertaga shu boʻlimlardan boshlang.</div>';
+ $("wk").innerHTML=h;
+}
+function extras(){
+ wk();
+ var n=Math.ceil((new Date("2027-01-01T00:00:00")-new Date())/864e5);
+ $("cd").textContent=n>0?"Imtihongacha "+n+" kun":"Imtihon kuni! 🌸";
+ var ms=D.mocks||[],c="";
+ if(ms.length){
+  var pts=ms.map(function(m,i){return (ms.length>1?10+i*280/(ms.length-1):150)+","+(100-m.s*0.9)});
+  c='<svg viewBox="0 0 300 110" style="width:100%"><polyline points="'+pts.join(" ")+'" fill="none" stroke="var(--gold)" stroke-width="2"/>'+pts.map(function(p){return '<circle cx="'+p.split(",")[0]+'" cy="'+p.split(",")[1]+'" r="3.5" fill="var(--rose)"/>'}).join("")+'</svg>';
+  c+=ms.slice(-6).reverse().map(function(m){return '<div>'+m.d.slice(5)+' · '+esc(m.t)+' · <b>'+m.s+'%</b></div>'}).join("");
+ }else c='<div class="sub">Hali natija yoʻq</div>';
+ $("mc").innerHTML=c;
+ var r="";
+ [1,3,7].forEach(function(o){var dd=new Date();dd.setDate(dd.getDate()-o);var x=D.days[dd.toLocaleDateString("en-CA")];if(x&&x.words&&x.words.trim())r+='<div style="margin-bottom:8px"><b>'+o+' kun oldingi lugʻat:</b><br>'+esc(x.words).replace(/\n/g,"<br>")+'</div>'});
+ $("rv").innerHTML=r||'<div class="sub">Har kuni lugʻat yozsangiz, shu yerda 1, 3 va 7 kundan keyin chiqadi.</div>';
+}
+$("ma").onclick=function(){var s=parseInt($("ms").value,10);if(isNaN(s)||s<0||s>100||!unlocked)return;D.mocks=D.mocks||[];D.mocks.push({d:key(),t:$("mt").value,s:s});$("ms").value="";sv();render()};
+$("bk").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:"application/json"}));a.download="reja-zaxira.json";a.click()};
+$("rs").onclick=function(){$("rf").click()};
+$("rf").onchange=function(){var f=this.files[0];if(!f)return;f.text().then(function(t){try{var o=JSON.parse(t);if(o&&o.days){D=o;sv();render();toast("Qaytarildi ✅")}}catch(e){toast("Fayl notoʻgʻri")}})};
+init();
+</script>
+</body>
+</html>
